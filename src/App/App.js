@@ -1,28 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseConnection from '../helpers/data/Connection';
+import Auth from '../Components/Auth/Auth';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button className="btn btn-danger">Hello</button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+firebaseConnection();
+
+class App extends React.Component {
+  state = {
+    authed: false,
+  }
+
+  componentDidMount() {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authed: true });
+      } else {
+        this.setState({ authed: false });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    console.log(this.removeListener);
+    this.removeListener();
+  }
+
+  render() {
+    const { authed } = this.state;
+
+    return (
+      <div className="App">
+        <button className="btn btn-danger">hi</button>
+        {
+        (authed) ? (<div>You Logged in</div>) : (<Auth />)
+        }
+      </div>
+    );
+  }
 }
 
 export default App;
