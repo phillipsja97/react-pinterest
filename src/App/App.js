@@ -36,7 +36,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <MyNavbar authed={authed}/>
-        <button className="btn btn-danger">hi</button>
         {
         (authed) ? (<BoardsContainer />) : (<Auth />)
         }
