@@ -36,7 +36,7 @@ class BoardsContainer extends React.Component {
   }
 
   render() {
-    const { setSingleBoard, addBoard } = this.props;
+    const { setSingleBoard } = this.props;
     return (
     <div className="d-flex flex-wrap justify-content-center">
       <BoardForm addBoard={this.addBoard}/>
