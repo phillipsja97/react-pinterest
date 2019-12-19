@@ -23,14 +23,12 @@ class MyNavbar extends React.Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-            </ul>
             <div className="form-inline my-2 my-lg-0">
               { authed && (<button className="nav-link btn btn-danger" onClick={this.logMeOut}>Logout</button>)}
             </div>
           </div>
         </nav>
-      </div>
+    </div>
     );
   }
 }
